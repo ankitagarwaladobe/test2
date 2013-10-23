@@ -67,12 +67,10 @@ The path of the WatchedFolder startpoint is C:\tmp\LCSamples\WatchedFolder\Reade
 * If **Samples - Reader Extensions** does not show in the **Applications** view, click **File > Get Application**.... Choose **Samples - Reader Extensions > Samples - Reader Extensions/1.0** from the application list to import the application to Workbench.
 * In the Applications view, click **Samples - Reader Extensions> Samples - Reader Extensions/1.0> Processes >Dynamically Apply Rights**. To check out the process, right-click **Dynamically Apply Rights** and select **Check Out**.  
   To edit the process, right-click **Dynamically Apply Rights** and select **Open**.
-* Click the startpoint **Dynamically Apply Rights - startpoint**, and in **Process Properties > General > Path**, you can enter (for example):
-
-```
-**Windows** - `D:\temp\LCSamples\WatchedFolder\ReaderExtensions`
+* Click the startpoint **Dynamically Apply Rights - startpoint**, and in **Process Properties > General > Path**, you can enter (for example):  
+**Windows** - `D:\temp\LCSamples\WatchedFolder\ReaderExtensions`  
 **UNIX** - `/home/yourUserName/LCSamples/WatchedFolder/ReaderExtensions`
-```
+
 * To save the process, select *File > Save*.
 * In the Applications view of Workbench, click **Samples - Reader Extensions> Samples - Reader Extensions/1.0**. To check in the application, right-click **Samples - Reader Extensions/1.0** and select **Check In**. 
   To deploy the process, right-click **Samples - Reader Extensions/1.0** and select **Deploy**.
