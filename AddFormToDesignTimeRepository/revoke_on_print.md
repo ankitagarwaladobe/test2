@@ -22,7 +22,7 @@ If you have installed to a different location, substitute the directory where yo
 
 * Check the following folder in the file system on the server where Document Services/LiveCycle is installed, if it exists, delete it before proceeding
 
-**Windows** -- `C:\tmp\LCSamples\WatchedFolder\RightsManagement\ApplyPolicy`
+**Windows** -- `C:\tmp\LCSamples\WatchedFolder\RightsManagement\ApplyPolicy` 
 **UNIX** -- `/tmp/LCSamples/WatchedFolder/RightsManagement/ApplyPolicy`
 
 * Log in to Administration Console.
@@ -72,81 +72,88 @@ The RightsManagement Event invokes the RevokeOnPrint process. By default, the ev
 * Click **Services > Rights Management > Configuration > Manual Configuration**.
 * Click **Export**, and specify a location to save the configuration XML file.
 * Open the configuration XML file exported with a text editor. In the editor, locate the **<node name="SDK">** element,
+
 ```
-<preferences EXTERNAL_XML_VERSION="1.0"> 
-     <root type="system"> 
-         <node name="Adobe"> 
-             <node name="LiveCycle"> 
-                 <node name="Config"> 
-                     <node name="PolicyServer">
+<preferences EXTERNAL_XML_VERSION="1.0">
+     <root type="system">
+         <node name="Adobe">  
+             <node name="LiveCycle">  
+                 <node name="Config">  
+                     <node name="PolicyServer"> 
                          <node name="SDK">
+
+```
+* Modify the entry element that has the key attribute with the value EventHandlersEnabled.  
+  Set the value attribute to a value of true.
+
+```
+     <entry key="EventHandlersEnabled" value="true" />
 ```
 
-Modify the entry element that has the key attribute with the value EventHandlersEnabled. Set the value attribute to a value of true.
-<entry key="EventHandlersEnabled" value="true" />
+* Save the file and return to the Manual Configuration page of Administration Console to import the configuration file.  
+Click **Browse** and specify the configuration file that you modified. Click **Import** and then click **OK**.
 
-Save the file and return to the Manual Configuration page of Administration Console to import the configuration file. Click Browse and specify the configuration file that you modified. Click Import and then click OK.
-Install the server certificate from web browser:
+**Install the server certificate from web browser:**
 
 To allow Adobe Acrobat/Adobe Reader to accept the server SSL certificate from the Document/LiveCycle server, install the certificate into the browser (Microsoft Internet Explorer):
 
-On the system where the Document/LiveCycle server resides, open URL https://<fully_qualified_hostname>:<port>. Set the URL to be the same as the Base URL you set in step Configure the Rights Management Base URL. A Certificate Error page displays in the browser, choose "Continue to this website (not recommended)."
-From the top of the browser, click Security Report (with message "Certificate Error") next to address bar, then click View certificates, a Certificate window displays.
-In Certificate window, click Install Certificate to launch Certificate Import wizard.
-In the Certificate Import wizard, click Next in the Welcome page, choose Place all certificates in the following store in Certificate Store page, click Browse.... From the Select Certificate Store window choose Trusted Root Certification Authorities then click OK to close the window and return to Certificate Import wizard window.
-Click Next, then click Finish in Completing page.
-If you get a Security Warning dialog pops up, choose Yes.
-You can see a message box "The import was successful" once the import finishes. Click OK in Certificate window.
-To verify the installation, open the Base URL from a new browser, the page can be opened without any security alert.
-Configure Policy
+* On the system where the Document/LiveCycle server resides, open URL https://<fully_qualified_hostname>:<port>. Set the URL to be the same as the Base URL you set in step **Configure the Rights Management Base URL**. A Certificate Error page displays in the browser,  
+  choose "Continue to this website (not recommended)."
+* From the top of the browser, click **Security Report** (with message "Certificate Error") next to address bar, then click **View certificates**, a Certificate window displays.
+* In Certificate window, click **Install Certificate** to launch Certificate Import wizard.
+* In the Certificate Import wizard, click **Next** in the Welcome page, choose **Place all certificates in the following store** in Certificate Store page,  
+  click **Browse**.... From the Select Certificate Store window choose **Trusted Root Certification Authorities** then click **OK** to close the window and return to Certificate Import wizard window.
+* Click **Next**, then click **Finish** in Completing page.
+* If you get a Security Warning dialog pops up, choose **Yes**.
+* You can see a message box "The import was successful" once the import finishes. Click **OK** in Certificate window.
+* To verify the installation, open the Base URL from a new browser, the page can be opened without any security alert.
 
-Log in to Workbench.
-If Samples - Rights Management does not show in the Applications view, click File > Get Application.... Choose Samples - Rights Management > Samples - Rights Management/1.0 from the application list to import the application to Workbench.
-In the Applications view, click Samples - Rights Management > Samples - Rights Management/1.0> Processes > Apply Policy. To check out the process, right-click Apply Policy and select Check Out. To edit the process, right-click Apply Policy and select Open.
-Click the activity Protect Document. In Process Properties > Input area, ensure that the Policy set name is Global Policy Set and Policy name is RMSampleTestPolicy.
-To save the process, select File > Save.
-In the Applications view of Workbench, click Samples - Rights Management > Samples - Rights Management/1.0. To check in the application, right-click Samples - Rights Management/1.0and select Check In. To deploy the process, right-click Samples - Rights Management/1.0and select Deploy.
-Configure Watched Folder
+**Configure Policy**
+
+* Log in to Workbench.
+* If Samples - Rights Management does not show in the Applications view, click File > Get Application.... Choose Samples - Rights Management > Samples - Rights Management/1.0 from the application list to import the application to Workbench.
+* In the Applications view, click Samples - Rights Management > Samples - Rights Management/1.0> Processes > Apply Policy. To check out the process, right-click Apply Policy and select Check Out. To edit the process, right-click Apply Policy and select Open.
+* Click the activity Protect Document. In Process Properties > Input area, ensure that the Policy set name is Global Policy Set and Policy name is RMSampleTestPolicy.
+* To save the process, select File > Save.
+* In the Applications view of Workbench, click Samples - Rights Management > Samples - Rights Management/1.0. To check in the application, right-click Samples - Rights Management/1.0and select Check In. To deploy the process, right-click Samples - Rights Management/1.0and select Deploy.
+
+**Configure Watched Folder**
 
 This step is optional if you do not want to change the default watched folder path.
 
 The path of the WatchedFolder startpoint is C:\tmp\LCSamples\WatchedFolder\RightsManagement\ApplyPolicy by default for Windows, and /tmp/LCSamples/WatchedFolder/RightsManagement/ApplyPolicy for Unix. If you want to change this path, complete the following steps:
 
-Log in to Workbench.
-If Samples - Rights Management does not show in the Applications view, click File > Get Application.... Choose Samples - Rights Management > Samples - Rights Management/1.0 from the application list to import the application to Workbench.
-In the Applications view, click Samples - Rights Management > Samples - Rights Management/1.0> Processes > Apply Policy. To check out the process, right-click Apply Policy and select Check Out. To edit the process, right-click Apply Policy and select Open.
-Click the startpoint Apply Policy - startpoint, and in Process Properties > General > Path, you can enter (for example):
+* Log in to Workbench.
+* If **Samples - Rights Management** does not show in the Applications view, click **File > Get Application**.... Choose **Samples - Rights Management > Samples - Rights Management/1.0** from the application list to import the application to Workbench.
+* In the Applications view, click **Samples - Rights Management > Samples - Rights Management/1.0> Processes > Apply Policy**. To check out the process, right-click **Apply Policy** and select **Check Out**. To edit the process, right-click **Apply Policy** and select **Open**.
+* Click the startpoint **Apply Policy - startpoint**, and in **Process Properties > General > Path**, you can enter (for example):
 
-Windows	D:\temp\LCSamples\WatchedFolder\RightsManagement\ApplyPolicy
-UNIX	/home/yourUserName/LCSamples/WatchedFolder/RightsManagement/ApplyPolicy
-To save the process, select File > Save.
-In the Applications view of Workbench, click Samples - Rights Management > Samples - Rights Management/1.0. To check in the application, right-click Samples - Rights Management/1.0and select Check In. To deploy the process, right-click Samples - Rights Management/1.0and select Deploy.
-Running the sample
+**Windows**	D:\temp\LCSamples\WatchedFolder\RightsManagement\ApplyPolicy  
+**UNIX**	/home/yourUserName/LCSamples/WatchedFolder/RightsManagement/ApplyPolicy  
+* To save the process, select **File > Save.**
+* In the Applications view of Workbench, click **Samples - Rights Management > Samples - Rights Management/1.0**.  
+  To check in the application, right-click **Samples - Rights Management/1.0** and select **Check In**.  
+  To deploy the process, right-click **Samples - Rights Management/1.0** and select **Deploy**.
 
-Copy the PDF file SampleToSign.pdf to the watched folder's input directory, by default it is C:\tmp\LCSamples\WatchedFolder\RightsManagement\ApplyPolicy\input for Windows and /tmp/LCSamples/WatchedFolder/RightsManagement/ApplyPolicy/input for Unix. The sample PDF is located in the folder collateral within the ZIP file Adobe-Samples-Service-RightsManagement.zip.
-After a while, the output PDF file SampleToSign.pdf is saved to the watched folder's result directory, by default is C:\tmp\LCSamples\WatchedFolder\RightsManagement\ApplyPolicy\result\yyyy\mm\dd\ for Windows and /tmp/LCSamples/WatchedFolder/RightsManagement/ApplyPolicy/result/yyyy/mm/dd/ for Unix.
-Open the output PDF file with Adobe Acrobat or Adobe Reader. A Security Warning dialog displays indicating that the document has a policy applied and now is protected and connects to the Document/LiveCycle server.
+**Running the sample**
 
+* Copy the PDF file SampleToSign.pdf to the watched folder's input directory, by default it is C:\tmp\LCSamples\WatchedFolder\RightsManagement\ApplyPolicy\input for Windows and /tmp/LCSamples/WatchedFolder/RightsManagement/ApplyPolicy/input for Unix. The sample PDF is located in the folder collateral within the ZIP file Adobe-Samples-Service-RightsManagement.zip.
+* After a while, the output PDF file SampleToSign.pdf is saved to the watched folder's result directory, by default is C:\tmp\LCSamples\WatchedFolder\RightsManagement\ApplyPolicy\result\yyyy\mm\dd\ for Windows and /tmp/LCSamples/WatchedFolder/RightsManagement/ApplyPolicy/result/yyyy/mm/dd/ for Unix.
+* Open the output PDF file with Adobe Acrobat or Adobe Reader. A Security Warning dialog displays indicating that the document has a policy applied and now is protected and connects to the Document/LiveCycle server.
 
-Note: If you are using Acrobat X to open the PDF file, you will see login dialog directly without clicking Allow in the dialog above.
+**Note:** If you are using Acrobat X to open the PDF file, you will see login dialog directly without clicking **Allow** in the dialog above.
 
-Click Allow to log in. Enter the username and password as username/password=atanaka/password (for example. set atanaka as the publisher in the process), click OK.
+* Click **Allow** to log in. Enter the username and password as username/password=atanaka/password (for example. set atanaka as the publisher in the process), click **OK**.
+* The dialog box about viewing secure documents offline displays. Click Yes to open the PDF.  
+  **Troubleshooting:** If you get error that relates to http protocol, which means the SSL or Rights Management is not setup correctly. See the SSL document or Rights Management document to configure them correctly.
+* Select **File > Print** from the Adobe Acrobat/Adobe Reader menu to print this document. Print either a hard copy or print via virtual printer such as Adobe PDF Printer.
+* Close the output document and then reopen it. A dialog indicating that that the document is terminated and no longer valid displays. When the document is printed, the revoke process event is invoked to revoke the license on the document.
 
-
-The dialog box about viewing secure documents offline displays. Click Yes to open the PDF.
-Troubleshooting: If you get error that relates to http protocol, which means the SSL or Rights Management is not setup correctly. See the SSL document or Rights Management document to configure them correctly.
-
-
-
-Select File > Print from the Adobe Acrobat/Adobe Reader menu to print this document. Print either a hard copy or print via virtual printer such as Adobe PDF Printer.
-Close the output document and then reopen it. A dialog indicating that that the document is terminated and no longer valid displays. When the document is printed, the revoke process event is invoked to revoke the license on the document.
-
-
-Next steps
+**Next steps**
 
 This process catches the event of printing the document, and then revokes the license on the document. To try other events, see the LiveCycle Workbench Help or the ADEP Workbench Help for more details.
 
-Legal disclaimer
+**Legal disclaimer**
 
 Any references to company names, company logos and user names in sample material or sample forms included in this documentation and/or software are for demonstration purposes only and are not intended to refer to any actual organization or persons.
 
