@@ -1,9 +1,9 @@
-#PDF Generator - Convert TIFF To PDF
+#PDF Generator - Optimize PDF
 
 Overview of the sample
 ----------------------
 
-This sample demonstrates how to convert a captured or faxed image (.tiff file) to a searchable PDF document using PDF Generator.
+This sample accepts a PDF file and optimizes it. The optimization settings can be configured through a file type setting or through a configuration file.  
 
 ##Files needed for the sample
 
@@ -29,6 +29,22 @@ The following files are required to run this sample.
 
 ##Configuring the sample
 
+**Create File Type Settings**
+
+* Log in to Administration Console.
+* Click **Home > Services > PDF Generator > File Type Settings.**
+* Click **New**, and then click **PDF Optimizer**. In the **Discard Objects** area, select **Discard bookmarks**.  
+  In the **Discard User Data** area, select **Discard all comments, forms and multimedia**. In the **Clean Up** area, select **Discard invalid links**.
+* Click **Save**, enter **"PDF Optimize Sample"** as the new file type setting's name and click **OK**.
+* Log in to Workbench.
+* If Samples – **PDF Generator** does not show in the application view, click **File > Get Application…. Choose Samples - PDF Generator > Samples – PDF Generator/1.0** from the application list.
+* In the Applications view, click **Samples – PDF Generator > Samples – PDF Generator/1.0 > Processes >OptimizePDF**. To check out the process, right-click **OptimizePDF** and select **Check Out**, to edit the process, right-click **OptimizePDF** and select **Open**.
+* Double-click the **Optimize PDF** activity to open its properties sheet.
+* In the Process Properties view, open **Input > Filetype setting**, select **PDF Optimize Sample** from the drop-list box.
+* To save the process, select **File > Save.**
+* In the Applications view, click **Samples - PDF Generator > Samples - PDF Generator/1.0.**  
+  To check in the application, right-click **Samples - PDF Generator/1.0** and select **Check In**, to deploy the application, right-click **Samples - PDF Generator/1.0** and select **Deploy**.
+
 **Configure Windows 2008 x64 Enterprise Server to run PDF Generator**
 
 To run this sample successfully, ensure that PDF Generator is enabled. The following steps are required to enable PDF Generator on a Windows 2008 x64 Enterprise Server. If PDF Generator is configured during Document Services/LiveCycle installation, skip this step. Check with your system administrator to find out whether PDF Generator is configured.
@@ -42,8 +58,9 @@ To run this sample successfully, ensure that PDF Generator is enabled. The follo
 
 ##Running the sample
 
-* Open the collateral folder within the downloaded ZIP file (Adobe-Samples-Service-PDFGenerator.zip). Copy a test file to the watched folder's input directory (by default it is C:\tmp\LCSamples\WatchedFolder\ConvertTiffToPDF\input on Windows and /tmp/LCSamples/WatchedFolder/ConvertTiffToPDF/input on Unix). Once the file is dropped into the input directory, Document Services/LiveCycle automatically picks it up and converts it into a PDF file.
-* Check the converted resulting PDF file in C:\tmp\LCSamples\WatchedFolder\ConvertTiffToPDF\result on Windows or /tmp/LCSamples/WatchedFolder/ConvertTiffToPDF/result on Unix.
+* Open the collateral folder within the downloaded ZIP file (Adobe-Samples-Service-PDFGenerator.zip). Copy a test file to the watched folder's input directory (by default it is C:\tmp\LCSamples\WatchedFolder\OptimizePDF\input on Windows).  
+  Once the file is dropped into the input directory, Document Services/LiveCycle automatically picks it up and does the optimization.
+* Check the optimized PDF file in C:\tmp\LCSamples\WatchedFolder\OptimizePDF\result on Windows
 
 ##Legal disclaimer
 
